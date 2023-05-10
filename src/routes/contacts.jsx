@@ -39,14 +39,15 @@ export default function Contact() {
           )}{" "}
           <Favorite contact={contact} />
         </h1>
+        {contact.mobile && <p>{contact.mobile}</p>}
 
-        {contact.twitter && (
+        {contact.facebook && (
           <p>
             <a
               target="_blank"
-              href={`https://twitter.com/${contact.twitter}`}
+              href={`https://facebook.com/${contact.facebook}`}
             >
-              {contact.twitter}
+              {contact.facebook}
             </a>
           </p>
         )}

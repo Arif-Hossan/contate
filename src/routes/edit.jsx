@@ -1,4 +1,12 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData ,redirect} from "react-router-dom";
+import { updateContact } from "../contacts";
+
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData);
+  await updateContact(params.contactId, updates);
+  return redirect(`/contacts/${params.contactId}`);
+}
 
 export default function EditContact() {
   const { contact } = useLoaderData();
@@ -23,12 +31,20 @@ export default function EditContact() {
         />
       </p>
       <label>
-        <span>Twitter</span>
+        <span>Mobile</span>
+        <input
+          type="number"
+          name="mobile"
+          placeholder="+880.........."
+          defaultValue={contact.mobile}/>
+      </label>
+      <label>
+        <span>Facebook</span>
         <input
           type="text"
-          name="twitter"
+          name="facebook"
           placeholder="@jack"
-          defaultValue={contact.twitter}
+          defaultValue={contact.facebook}
         />
       </label>
       <label>
